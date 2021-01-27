@@ -3127,7 +3127,7 @@ function ContactController($filter) {
         }
     ];
 
-    this.search = 'B';
+    this.search = 'mar'
 
     this.filteredList = $filter('filter')(this.list, this.search);
 

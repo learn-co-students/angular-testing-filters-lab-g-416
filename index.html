@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Angular Application</title>
+
+    <style>
+        body {
+            font-family: "Helvetica Neue", Verdana, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin: 50px 0;
+        }
+
+        input {
+            font-size: 16px;
+            padding: 5px 7px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+        thead {
+            background: rgba(0, 0, 0, 0.05);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        tr:not(:last-of-type) {
+            border-bottom: 1px solid map-get($border-color, light);
+        }
+
+        td {
+            padding: 16px 12px 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div ng-app="app" class="app">
+        <div ng-controller="ContactController as ctrl">
+            <h4>Search</h4>
+            <input ng-model="ctrl.search" ng-change="ctrl.changeFilter()"/>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Picture</td>
+                        <td>Title</td>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td>Email</td>
+                        <td>Date of Birth</td>
+                        <td>Phone</td>
+                        <td>Gender</td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="contact in ctrl.filteredList">
+                    <td><img ng-src="{{ contact.picture.thumbnail }}" /></td>
+                    <td>{{ contact.name.title }}</td>
+                    <td>{{ contact.name.first }}</td>
+                    <td>{{ contact.name.last }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.dob | date:'fullDate'}}</td>
+                    <td>{{ contact.phone }}</td>
+                    <td>{{ contact.gender }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/angular.js"></script>
+    <script src="js/app/app.js"></script>
+    <script src="js/app/controllers/ContactController.js"></script>
+
+</body>
+</html>
